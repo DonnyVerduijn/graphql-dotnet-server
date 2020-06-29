@@ -1,9 +1,12 @@
-﻿using Orders.Models;
+﻿using System;
 using System.Collections.Generic;
+using System.Text;
+using Customers.Models;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Orders.Services
+
+namespace Customers.Services
 {
     public class CustomerService : ICustomerService
     {

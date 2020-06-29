@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Orders.Models
 {
@@ -12,7 +10,7 @@ namespace Orders.Models
         public DateTime Created { get; private set; }
 
         public string Id { get; private set; }
-        public Orders.Schema.OrderStatusesEnum Status { get; private set; }
+        public Schema.OrderStatusesEnum Status { get; private set; }
 
     }
 }

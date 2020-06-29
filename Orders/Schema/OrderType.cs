@@ -1,6 +1,7 @@
 ﻿using GraphQL.Types;
 using Orders.Models;
-using Orders.Services;
+using Customers.Schema;
+using Customers.Services;
 
 namespace Orders.Schema
 {
@@ -19,7 +20,6 @@ namespace Orders.Schema
                 resolve: ctx => customers.GetCustomerByIdAsync(ctx.Source.CustomerId));
           
         }
-
 
         private void CreateFields()
         {

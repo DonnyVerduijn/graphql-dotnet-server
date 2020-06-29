@@ -10,6 +10,9 @@ using Microsoft.Extensions.Hosting;
 using Orders.Models;
 using Orders.Schema;
 using Orders.Services;
+using Customers.Models;
+using Customers.Schema;
+using Customers.Services;
 using System;
 
 namespace Server

@@ -1,7 +1,10 @@
-﻿using GraphQL.Types;
-using Orders.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using GraphQL.Types;
+using Customers.Models;
 
-namespace Orders.Schema
+namespace Customers.Schema
 {
     public class CustomerType : ObjectGraphType<Customer>
     {
