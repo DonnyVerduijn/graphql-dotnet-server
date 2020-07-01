@@ -12,16 +12,16 @@ namespace Root
         public RootSubscription(IServiceProvider provider)
         {
             Name = "Subscription";
-            IEnumerable<FieldType> orderSubs = provider.GetRequiredService<OrderSubscriptions>().Fields;
-            IEnumerable<FieldType> customerSubs = provider.GetRequiredService<CustomerSubscriptions>().Fields;
-            foreach (FieldType fieldType in orderSubs)
+            IList<IEnumerable<FieldType>> subscriptions = new List<IEnumerable<FieldType>>();
+            subscriptions.Add(provider.GetRequiredService<OrderSubscriptions>().Fields);
+            subscriptions.Add(provider.GetRequiredService<CustomerSubscriptions>().Fields);
+            foreach (IEnumerable<FieldType> set in subscriptions)
             {
-                AddField(fieldType);
-            }
-            foreach(FieldType fieldType in customerSubs)
-            {
-                AddField(fieldType);
-            }
+                foreach (FieldType fieldType in set)
+                {
+                    AddField(fieldType);
+                }
+            }        
         }
     }
 }
