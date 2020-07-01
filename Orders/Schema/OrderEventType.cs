@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GraphQL.Instrumentation;
-using GraphQL.Types;
+﻿using GraphQL.Types;
 using Orders.Models;
 
 namespace Orders.Schema

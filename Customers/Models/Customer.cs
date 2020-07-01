@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Customers.Models
 {
     public class Customer
     {
-        public Customer(int id, string name)
+        public Customer(string id, string name, DateTime created)
         {
             Id = id;
             Name = name;
+            Created = created;
         }
 
-        public int Id { get; private set; }
+        public string Id { get; private set; }
         public string Name { get; set; }
+        public DateTime Created { get; private set; }
+
     }
 }

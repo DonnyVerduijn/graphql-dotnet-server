@@ -6,7 +6,7 @@ namespace Orders.Models
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public int CustomerId { get; set; }
+        public string CustomerId { get; set; }
         public DateTime Created { get; private set; }
 
         public string Id { get; private set; }

@@ -7,13 +7,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Orders.Models;
 using Orders.Schema;
 using Orders.Services;
-using Customers.Models;
 using Customers.Schema;
 using Customers.Services;
 using System;
+using Root;
 
 namespace Server
 {
@@ -33,18 +32,27 @@ namespace Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IOrderService, OrderService>();
-            services.AddSingleton<ICustomerService, CustomerService>();
-            services.AddSingleton<OrderType>();
+            services.AddSingleton<CustomerCreateInputType>();
+            services.AddSingleton<CustomerEventType>();
+            services.AddSingleton<CustomerMutations>();
+            services.AddSingleton<CustomerQueries>();
+            services.AddSingleton<CustomerSubscriptions>();
             services.AddSingleton<CustomerType>();
-            services.AddSingleton<OrderStatusesEnum>();
-            services.AddSingleton<OrdersQuery>();
-            services.AddSingleton<OrdersSchema>();
+      
             services.AddSingleton<OrderCreateInputType>();
-            services.AddSingleton<OrdersMutation>();
-            services.AddSingleton<OrdersSubscription>();
             services.AddSingleton<OrderEventType>();
+            services.AddSingleton<OrderMutations>();
+            services.AddSingleton<OrderQueries>();
+            services.AddSingleton<OrderStatusesEnum>();
+            services.AddSingleton<OrderSubscriptions>();
+            services.AddSingleton<OrderType>();
+            
+            services.AddSingleton<ICustomerEventService, CustomerEventService>();
+            services.AddSingleton<ICustomerService, CustomerService>();
             services.AddSingleton<IOrderEventService, OrderEventService>();
+            services.AddSingleton<IOrderService, OrderService>();
+
+            services.AddSingleton<Schema>();
 
             services.AddGraphQL(options =>
             {
@@ -55,8 +63,7 @@ namespace Server
             .AddSystemTextJson(deserializerSettings => { }, serializerSettings => { }) // For .NET Core 3+
             .AddWebSockets()
             .AddDataLoader()
-            .AddGraphTypes(typeof(OrdersSchema));
-            services.AddApplicationInsightsTelemetry();
+            .AddGraphTypes(typeof(Schema));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,8 +90,8 @@ namespace Server
 
             app
             .UseWebSockets()
-            .UseGraphQLWebSockets<OrdersSchema>("/graphql")
-            .UseGraphQL<OrdersSchema>("/graphql");
+            .UseGraphQLWebSockets<Schema>("/graphql")
+            .UseGraphQL<Schema>("/graphql");
         }
     }
 }

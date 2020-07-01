@@ -12,7 +12,7 @@ namespace Orders.Schema
             Name = "OrderInput";
             Field<NonNullGraphType<StringGraphType>>("name");
             Field<NonNullGraphType<StringGraphType>>("description");
-            Field<NonNullGraphType<IntGraphType>>("customerId");
+            Field<NonNullGraphType<StringGraphType>>("customerId");
             Field<NonNullGraphType<DateGraphType>>("created");
         }
     }

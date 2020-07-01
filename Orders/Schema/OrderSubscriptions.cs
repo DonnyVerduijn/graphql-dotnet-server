@@ -10,14 +10,14 @@ using System.Reactive.Linq;
 
 namespace Orders.Schema
 {
-    public class OrdersSubscription : ObjectGraphType<object>
+    public class OrderSubscriptions : ObjectGraphType<object>
     {
         private readonly IOrderEventService _events;
 
-        public OrdersSubscription(IOrderEventService events)
+        public OrderSubscriptions(IOrderEventService events)
         {
             _events = events;
-            Name = "Subscription";
+            Name = "OrderSubscriptions";
             AddField(new EventStreamFieldType
             {
                 Name = "orderEvent",

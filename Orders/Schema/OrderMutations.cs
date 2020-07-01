@@ -6,30 +6,30 @@ using System;
 
 namespace Orders.Schema
 {
-    public class OrdersMutation : ObjectGraphType<object>
+    public class OrderMutations : ObjectGraphType
     {
-        public OrdersMutation(IOrderService orders)
+        public OrderMutations(IOrderService orders)
         {
-            Name = "Mutation";
+            Name = "OrderMutations";
             Field<OrderType>(
-            "createOrder",
+            "create",
             arguments: new QueryArguments(
-                new QueryArgument<NonNullGraphType<OrderCreateInputType>> { Name = "order" }),
+                new QueryArgument<NonNullGraphType<OrderCreateInputType>>
+                { Name = "order" }),
             resolve: ctx =>
             {
-                var orderInput = ctx.GetArgument<OrderCreateInput>("order");
-                var id = Guid.NewGuid().ToString();
-                var order = new Order(orderInput.Name,
-                orderInput.Description, orderInput.Created,
-                orderInput.CustomerId, id);
+                var input = ctx.GetArgument<OrderCreateInput>("order");
+                var orderId = Guid.NewGuid().ToString();
+                var order = new Order(orderId, input.Name, input.Created, input.Description, input.CustomerId);
                 return orders.CreateAsync(order);
             }
          );
 
             FieldAsync<OrderType>(
-                "startOrder",
+                "start",
                 arguments: new QueryArguments(
-                    new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "orderId" }),
+                    new QueryArgument<NonNullGraphType<StringGraphType>> 
+                    { Name = "orderId" }),
                 resolve: async context =>
                 {
                     var orderId = context.GetArgument<string>("orderId");
@@ -38,9 +38,6 @@ namespace Orders.Schema
 
 
                 });
-
-
         }
-
     }
 }

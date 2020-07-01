@@ -4,20 +4,20 @@ namespace Orders.Models
 {
     public class Order
     {
-        public Order(string name, string description, DateTime created, int customerId, string Id)
+        public Order(string Id, string name, DateTime created, string description, string customerId )
         {
+            this.Id = Id;
             Name = name;
             Description = description;
             Created = created;
             CustomerId = customerId;
-            this.Id = Id;
             Status = OrderStatuses.CREATED;
         }
 
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime Created { get; private set; }
-        public int CustomerId { get; set; }
+        public string CustomerId { get; set; }
         public string Id { get; private set; }
         public OrderStatuses Status { get; private set; }
 
