@@ -9,8 +9,4 @@
     <PackageReference Include="GraphQL-Parser" Version="5.1.2" />
     <PackageReference Include="System.Reactive" Version="4.4.1" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Customers\Customers.csproj" />
-  </ItemGroup>
 </Project>

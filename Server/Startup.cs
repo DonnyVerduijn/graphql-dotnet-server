@@ -7,12 +7,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Orders.Schema;
-using Orders.Services;
-using Customers.Schema;
-using Customers.Services;
+using WebApi.Orders.Schema;
+using WebApi.Orders.Services;
+using WebApi.Customers.Schema;
+using WebApi.Customers.Services;
 using System;
-using Root;
+using WebApi;
 
 namespace Server
 {
@@ -55,7 +55,7 @@ namespace Server
             services.AddSingleton<Schema>();
 
             services.AddGraphQL(options =>
-            {
+            {   
                 options.EnableMetrics = Environment.IsDevelopment();
                 options.ExposeExceptions = Environment.IsDevelopment();
                 options.UnhandledExceptionDelegate = ctx => { Console.WriteLine(ctx.OriginalException); };
