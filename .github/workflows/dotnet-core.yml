@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: 3.1.301
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore graphql-dotnet-starter.sln
     - name: Build
-      run: dotnet build --configuration Production --no-restore
+      run: dotnet build graphql-dotnet-starter.sln --configuration Release --no-restore
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test graphql-dotnet-starter.sln --no-restore --verbosity normal
